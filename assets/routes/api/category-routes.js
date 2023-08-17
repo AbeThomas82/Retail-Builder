@@ -19,9 +19,18 @@ router.get('/', async (req, res) => {
 
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
+  const foundID = await Category.findOne({
+    include: [Product]
+  })
+  if (!foundID){
+    return res.status(400).json({
+      message: "Cannot find ID."
+    })
+  }
+  return res.status(200).json(foundID)
 });
 
 router.post('/', (req, res) => {
