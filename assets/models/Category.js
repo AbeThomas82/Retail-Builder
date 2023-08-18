@@ -8,10 +8,10 @@ Category.init(
   {
     // define columns
     id:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      type: DataTypes.INTEGER,//data type
+      allowNull: false,//no null values
+      primaryKey: true,//primary
+      autoIncrement: true//auto value +1
     },
     category_name:{
       type: DataTypes.STRING,
@@ -19,7 +19,7 @@ Category.init(
     },
   },
   {
-    sequelize,
+    sequelize,//use sequelize
     timestamps: false,
     freezeTableName: true,
     underscored: true,
@@ -27,4 +27,4 @@ Category.init(
   }
 );
 
-module.exports = Category;
+module.exports = Category;//exports code

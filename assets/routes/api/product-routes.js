@@ -7,9 +7,9 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
-  const foundProduct = await Product.findAll({
-    include: [Category],
-    include: [Tag]
+  const foundProduct = await Product.findAll({//Broad search
+    include: [Category],//Uses model
+    include: [Tag]//Also uses model
   })
   if (!foundProduct){
     return res.status(400).json({
@@ -27,8 +27,8 @@ router.get('/:id', async (req, res) => {
     where: {
       id: req.params.id
     },
-    include: [Category],
-    include: [Tag]
+    include: [Category],//Uses this model
+    include: [Tag]//Also uses this model
   })
   if (!foundID){
     return res.status(400).json({
@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
 
 // create new product
 router.post('/', (req, res) => {
-  /* req.body should look like this...
+  /* What you put in json body of Insomnia
     {
       product_name: "Basketball",
       price: 200.00,
@@ -72,10 +72,10 @@ router.post('/', (req, res) => {
 
 // update product
 router.put('/:id', (req, res) => {
-  // update product data
-  Product.update(req.body, {
+  // update product data using ID
+  Product.update(req.body, {//area of change
     where: {
-      id: req.params.id,
+      id: req.params.id,//location of change
     },
   })
     .then((product) => {
@@ -116,10 +116,10 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+  //Deletes one product by its `id` value using destroy
   Product.destroy({
     where: {
-      id: req.params.id,
+      id: req.params.id,//scope of change
     },
   })
     .then((deletedProd) => {
@@ -128,4 +128,4 @@ router.delete('/:id', (req, res) => {
     .catch((err) => res.json(err));
 });
 
-module.exports = router;
+module.exports = router;//sends info to be imported

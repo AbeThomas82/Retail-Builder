@@ -11,10 +11,10 @@ Product.init(
   {
     // define columns
     id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      type: DataTypes.INTEGER,//data type
+      allowNull: false,//no nulls allowed
+      primaryKey: true,//primary key set
+      autoIncrement: true//+1 automatically
     },
     product_name: {
       type: DataTypes.STRING,
@@ -44,7 +44,7 @@ Product.init(
     }
   },
   {
-    sequelize,
+    sequelize,//use sequelize
     timestamps: false,
     freezeTableName: true,
     underscored: true,
@@ -52,4 +52,4 @@ Product.init(
   }
 );
 
-module.exports = Product;
+module.exports = Product;//exports code

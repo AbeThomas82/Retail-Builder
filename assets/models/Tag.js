@@ -1,8 +1,8 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');//imports sequelize
 
-const sequelize = require('../config/connection.js');
+const sequelize = require('../config/connection.js');//imports env values
 
-class Tag extends Model {}
+class Tag extends Model {}//builds on Model info
 
 Tag.init(
   {
@@ -18,7 +18,7 @@ Tag.init(
     },
   },
   {
-    sequelize,
+    sequelize,//uses sequelize
     timestamps: false,
     freezeTableName: true,
     underscored: true,
@@ -26,4 +26,4 @@ Tag.init(
   }
 );
 
-module.exports = Tag;
+module.exports = Tag;//exports code

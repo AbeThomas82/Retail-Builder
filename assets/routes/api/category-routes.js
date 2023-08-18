@@ -6,8 +6,8 @@ const { Category, Product } = require('../../models');
 router.get('/', async (req, res) => {
   // find all categories
   // be sure to include its associated Products
-  const foundCategories = await Category.findAll({
-    include: [Product]
+  const foundCategories = await Category.findAll({//general search
+    include: [Product]//includes model
 
   })
   if (!foundCategories){
@@ -22,9 +22,9 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
-  const foundID = await Category.findOne({
+  const foundID = await Category.findOne({//narrows search
     where: {
-      id: req.params.id
+      id: req.params.id//scope of the GET
     },
     include: [Product]
   })
@@ -39,20 +39,20 @@ router.get('/:id', async (req, res) => {
 router.post('/', (req, res) => {
   // create a new category
   Category.create(req.body).then((category) => {
-    res.json(category);
+    res.json(category);//uses create command - remember to use lowercase for 'create'
     });
 });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
   console.log("Nothing.")
-  Category.update(
+  Category.update(//references correct model
     {
-      category_name: req.body.category_name,
+      category_name: req.body.category_name,//altered information
     },
     {
       where: {
-        id: req.params.id,
+        id: req.params.id,//targets correct ID
       }
     }
   ).then((updatedCat) => {
@@ -64,16 +64,16 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  // delete a category by its `id` value
-  Category.destroy({
+  //Deleting a category by its `id` value
+  Category.destroy({//destroy command targets "where" in work scope
     where: {
       id: req.params.id,
     },
   })
-    .then((deletedCat) => {
+    .then((deletedCat) => {//named variable to express output
       res.json(deletedCat);
     })
     .catch((err) => res.json(err));
 });
 
-module.exports = router;
+module.exports = router;//sends info to be required

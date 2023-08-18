@@ -1,17 +1,17 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');//imports sequelize
 
-const sequelize = require('../config/connection');
+const sequelize = require('../config/connection');//imports env
 
-class ProductTag extends Model {}
+class ProductTag extends Model {}//builds on Model info
 
 ProductTag.init(
   {
     // define columns
     id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+      type: DataTypes.INTEGER,//data type
+      allowNull: false,//no nulls
+      primaryKey: true,//primary set for reference
+      autoIncrement: true,//+1 add
     },
     product_id: {
       type: DataTypes.INTEGER,
@@ -29,7 +29,7 @@ ProductTag.init(
     },
   },
   {
-    sequelize,
+    sequelize,//use sequelize
     timestamps: false,
     freezeTableName: true,
     underscored: true,
@@ -37,4 +37,4 @@ ProductTag.init(
   }
 );
 
-module.exports = ProductTag;
+module.exports = ProductTag;//exports code

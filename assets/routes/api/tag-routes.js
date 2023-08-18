@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   // find all tags
   // be sure to include its associated Product data
   const foundTags = await Tag.findAll({
-    include: [Product]
+    include: [Product]//model referenced
 
   })
   if (!foundTags){
@@ -23,9 +23,9 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Product data
   const foundID = await Tag.findOne({
     where: {
-      id: req.params.id
+      id: req.params.id//location of alteration
     },
-    include: [Product]
+    include: [Product]//model referenced
   })
   if (!foundID){
     return res.status(400).json({
@@ -44,13 +44,13 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
-  Tag.update(
+  Tag.update(//changes tag by id
     {
-      tag_name: req.body.tag_name,
+      tag_name: req.body.tag_name,//what is altered
     },
     {
       where: {
-        id: req.params.id,
+        id: req.params.id,//location of alteration
       }
     }
   ).then((updatedTag) => {
@@ -62,10 +62,10 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  // delete on tag by its `id` value
-  Tag.destroy({
+  //Delete on tag by its `id` value
+  Tag.destroy({//destroy command does its job
     where: {
-      id: req.params.id,
+      id: req.params.id,//Location of tag
     },
   })
     .then((deletedTag) => {
@@ -74,4 +74,4 @@ router.delete('/:id', (req, res) => {
     .catch((err) => res.json(err));
 });
 
-module.exports = router;
+module.exports = router;//sends info to be required
