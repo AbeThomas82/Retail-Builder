@@ -22,7 +22,7 @@ Commands for category, product, and tags are: GET, POST, PUT, and DELETE.
 ## Links
 [Repository](https://github.com/AbeThomas82/Retail-Builder)
 
-[ScreenCastify]()
+[ScreenCastify](https://drive.google.com/file/d/1DGlZuOrsMrxvrcUDfd9V8fob8B6wD5Me/view)
 
 ## Credits
 Spencer Sokol and Katherine Hopkins
