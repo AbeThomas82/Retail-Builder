@@ -38,22 +38,17 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new category
-  Category.bulkCreate([
-    {
-      id: 6,
-      category_name: "Stuff",
-    }
-  ]).then(() => {
-    res.send('Information seeded.');
-  });
+  Category.create(req.body).then((category) => {
+    res.json(category);
+    });
 });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  console.log("Nothing.")
   Category.update(
     {
-      id: req.body.id,
-      category: req.body.category_name,
+      category_name: req.body.category_name,
     },
     {
       where: {
