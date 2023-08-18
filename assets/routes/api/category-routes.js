@@ -23,6 +23,9 @@ router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
   const foundID = await Category.findOne({
+    where: {
+      id: req.params.id
+    },
     include: [Product]
   })
   if (!foundID){
@@ -35,14 +38,47 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new category
+  Category.bulkCreate([
+    {
+      id: 6,
+      category_name: "Stuff",
+    }
+  ]).then(() => {
+    res.send('Information seeded.');
+  });
 });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  Category.update(
+    {
+      id: req.body.id,
+      category: req.body.category_name,
+    },
+    {
+      where: {
+        id: req.params.id,
+      }
+    }
+  ).then((updatedCat) => {
+    res.json(updatedCat);
+  }).catch((err) => {
+    console.log(err);
+    res.json(err);
+  });
 });
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
+  Category.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((deletedCat) => {
+      res.json(deletedCat);
+    })
+    .catch((err) => res.json(err));
 });
 
 module.exports = router;
